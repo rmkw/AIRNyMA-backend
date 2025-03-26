@@ -10,8 +10,11 @@ import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+
 
 import java.util.List;
 import java.util.Map;
@@ -26,8 +29,25 @@ public class FiEconomicasCapService {
         return repository.findAll();
     }
 
+    public ResponseEntity<Map<String, Object>> getById(Integer id) {
+    Optional<fuentEntity> optionalFuente = repository.findById(id);
+
+    if (optionalFuente.isPresent()) {
+        return ResponseEntity.ok(Map.of(
+            "message", "Fuente encontrada",
+            "fuente", optionalFuente.get()
+        ));
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+            "message", "La fuente no existe"
+        ));
+    }
+}
+
+   
+
     public List<fuentEntity> getByUser(Integer idUsuario) {
-        return repository.findByResponsableRegister(idUsuario);
+        return repository.findByResponsableRegisterOrderByIdFuenteAsc(idUsuario);
     }
 
     public fuentEntity create(CreateFiEconomicasCapDTO dto) {
@@ -46,9 +66,10 @@ public class FiEconomicasCapService {
         Optional<fuentEntity> optional = repository.findById(id);
         if (optional.isPresent()) {
             fuentEntity entity = optional.get();
+            entity.setIdPp(dto.getIdPp());
             entity.setFuente(dto.getFuente());
             entity.setLinkFuente(dto.getLinkFuente());
-            entity.setLinkAccesoFuente(dto.getLinkAccesoFuente());
+            // entity.setLinkAccesoFuente(dto.getLinkAccesoFuente());
             entity.setAnioEvento(dto.getAnioEvento());
             entity.setComentario(dto.getComentario());
             entity.setResponsableActualizacion(dto.getResponsableActualizacion());

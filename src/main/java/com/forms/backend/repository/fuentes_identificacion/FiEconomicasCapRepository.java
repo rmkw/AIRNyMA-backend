@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface FiEconomicasCapRepository extends JpaRepository<fuentEntity, Integer> {
-    List<fuentEntity> findByResponsableRegister(Integer responsableRegister);
+    List<fuentEntity> findByResponsableRegisterOrderByIdFuenteAsc(Integer responsableRegister);
 }

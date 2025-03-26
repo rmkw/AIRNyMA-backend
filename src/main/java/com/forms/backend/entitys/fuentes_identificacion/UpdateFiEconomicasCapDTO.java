@@ -4,6 +4,7 @@ import lombok.Data;
 @Data
 public class UpdateFiEconomicasCapDTO {
     private String fuente;
+    private String idPp;
     private String linkFuente;
     private String linkAccesoFuente;
     private String anioEvento;

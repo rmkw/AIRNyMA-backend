@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/fi-economicas")
+@RequestMapping("/api/fi-economicas")
 public class FiEconomicasCapController {
      @Autowired
     private FiEconomicasCapService service;
@@ -22,6 +22,12 @@ public class FiEconomicasCapController {
     public List<fuentEntity> getAll() {
         return service.getAll();
     }
+
+    @GetMapping("/fuente/{id}")
+    public ResponseEntity<Map<String, Object>> getById(@PathVariable Integer id) {
+        return service.getById(id);
+    }
+
 
     @GetMapping("/{id_usuario}")
     public List<fuentEntity> getByUser(@PathVariable Integer id_usuario) {
