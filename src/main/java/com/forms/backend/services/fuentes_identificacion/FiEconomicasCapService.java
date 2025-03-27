@@ -26,7 +26,7 @@ public class FiEconomicasCapService {
     private FiEconomicasCapRepository repository;
 
     public List<fuentEntity> getAll() {
-        return repository.findAll();
+        return repository.findAllByOrderByIdFuenteAsc();
     }
 
     public ResponseEntity<Map<String, Object>> getById(Integer id) {
