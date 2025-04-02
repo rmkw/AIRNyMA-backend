@@ -39,7 +39,7 @@ public class SecurityConfig {
                 http
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(authz -> authz
-                                                .requestMatchers( "/api/auth/**","/api/ppeco/**","/api/fi-economicas/**","/api/variables").permitAll()
+                                                .requestMatchers( "/api/auth/**","/api/ppeco/**","/api/fi-economicas/**","/api/variables","/api/mdea/**").permitAll()
                                                 .anyRequest().authenticated())
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
