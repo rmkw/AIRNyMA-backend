@@ -9,12 +9,12 @@ import com.forms.backend.services.mdea.subcomponentes.MdeaSubcomponentesService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/mdea/sub")
+@RequestMapping("/api/mdea/subcomponente")
 public class MdeaSubcomponentesController {
     @Autowired
     private MdeaSubcomponentesService service;
 
-    @GetMapping("/{id_comp}")
+    @GetMapping("/comp/{id_comp}")
     public ResponseEntity<List<MdeaSubcomponentesEnty>> getSubcomponentesByCompId(@PathVariable Integer id_comp) {
         List<MdeaSubcomponentesEnty> subcomponentes = service.getSubcomponentesByCompId(id_comp);
         if (subcomponentes.isEmpty()) {
