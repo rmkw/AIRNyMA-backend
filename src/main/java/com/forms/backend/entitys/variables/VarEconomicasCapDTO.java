@@ -14,6 +14,7 @@ public class VarEconomicasCapDTO {
     private String definicionVar;
     private String linkVar;
     private String comentarioVar;
+    private String varSerieAnio;
     private Boolean alineacionMdea;
     private Boolean alineacionOds;
     private Integer responsableRegister;

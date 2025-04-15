@@ -13,7 +13,7 @@ public class fuentEntity {
     private String idPp;
     private String fuente;
     private String linkFuente;
-    private String linkAccesoFuente;
+    
     private String anioEvento;
     private String comentario;
     private Boolean isactive = true;

@@ -1,7 +1,9 @@
 package com.forms.backend.services.variables;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.forms.backend.entitys.variables.VarEconomicasCap;
 import com.forms.backend.entitys.variables.VarEconomicasCapDTO;
@@ -32,6 +34,7 @@ public class VarEconomicasCapService {
         dto.setDefinicionVar(entity.getDefinicionVar());
         dto.setLinkVar(entity.getLinkVar());
         dto.setComentarioVar(entity.getComentarioVar());
+        dto.setVarSerieAnio(entity.getVarSerieAnio());
         dto.setAlineacionMdea(entity.getAlineacionMdea());
         dto.setAlineacionOds(entity.getAlineacionOds());
         dto.setResponsableRegister(entity.getResponsableRegister());
@@ -40,10 +43,19 @@ public class VarEconomicasCapService {
     }
 
     public VarEconomicasCapDTO create(VarEconomicasCapDTO dto) {
+            // Validar si ya existe una relación con el mismo idVariable e idFuente
+        boolean exists = repository.existsByIdVariableAndIdFuente(dto.getIdVariable(), dto.getIdFuente());
+        if (exists) {
+            throw new ResponseStatusException(
+                HttpStatus.CONFLICT, // Código 409 Conflict (mejor que 403 en este caso)
+                "Ya existe una variable con ese idVariable y esa fuente (idFuente)"
+            );
+        }
+        
         VarEconomicasCap entity = convertToEntity(dto);
-        entity.setIsActive(true); // Por defecto, el registro es activo
-        VarEconomicasCap savedEntity = repository.save(entity);
-        return convertToDTO(savedEntity);
+            entity.setIsActive(true); // Por defecto, el registro es activo
+            VarEconomicasCap savedEntity = repository.save(entity);
+            return convertToDTO(savedEntity);
     }
 
     private VarEconomicasCap convertToEntity(VarEconomicasCapDTO dto) {
@@ -55,10 +67,15 @@ public class VarEconomicasCapService {
         entity.setDefinicionVar(dto.getDefinicionVar());
         entity.setLinkVar(dto.getLinkVar());
         entity.setComentarioVar(dto.getComentarioVar());
+        entity.setVarSerieAnio(dto.getVarSerieAnio());
         entity.setAlineacionMdea(dto.getAlineacionMdea());
         entity.setAlineacionOds(dto.getAlineacionOds());
         entity.setResponsableRegister(dto.getResponsableRegister());
         entity.setResponsableActualizacion(dto.getResponsableActualizacion());
         return entity;
+    }
+    
+    public List<VarEconomicasCap> getByResponsableAndFuente(Integer responsableRegister, Integer idFuente) {
+        return repository.findByResponsableRegisterAndIdFuenteAndIsActiveTrue(responsableRegister, idFuente);
     }
 }

@@ -55,7 +55,7 @@ public class FiEconomicasCapService {
         entity.setIdPp(dto.getIdPp());
         entity.setFuente(dto.getFuente());
         entity.setLinkFuente(dto.getLinkFuente());
-        entity.setLinkAccesoFuente(dto.getLinkAccesoFuente());
+        
         entity.setAnioEvento(dto.getAnioEvento());
         entity.setComentario(dto.getComentario());
         entity.setResponsableRegister(dto.getResponsableRegister());

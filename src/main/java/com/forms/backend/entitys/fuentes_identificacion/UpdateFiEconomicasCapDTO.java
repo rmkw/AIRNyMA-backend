@@ -6,7 +6,7 @@ public class UpdateFiEconomicasCapDTO {
     private String fuente;
     private String idPp;
     private String linkFuente;
-    private String linkAccesoFuente;
+    
     private String anioEvento;
     private String comentario;
     private Integer responsableActualizacion;

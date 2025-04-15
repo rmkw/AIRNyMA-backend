@@ -35,6 +35,9 @@ public class VarEconomicasCap {
     @Column(name = "comentario_var")
     private String comentarioVar;
 
+    @Column(name = "var_serie_anio")
+    private String varSerieAnio;
+
     @Column(name = "alineacion_mdea")
     private Boolean alineacionMdea;
 

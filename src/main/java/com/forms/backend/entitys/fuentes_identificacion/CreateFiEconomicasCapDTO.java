@@ -7,7 +7,7 @@ public class CreateFiEconomicasCapDTO {
     private String idPp;
     private String fuente;
     private String linkFuente;
-    private String linkAccesoFuente;
+    
     private String anioEvento;
     private String comentario;
     private Integer responsableRegister;

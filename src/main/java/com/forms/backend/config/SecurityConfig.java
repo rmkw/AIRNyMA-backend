@@ -39,7 +39,7 @@ public class SecurityConfig {
                 http
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(authz -> authz
-                                                .requestMatchers( "/api/auth/**","/api/ppeco/**","/api/fi-economicas/**","/api/variables","/api/mdea/**","/api/ods/**").permitAll()
+                                                .requestMatchers( "/api/auth/**","/api/ppeco/**","/api/fi-economicas/**","/api/variables/**","/api/mdea/**","/api/ods/**").permitAll()
                                                 .anyRequest().authenticated())
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
@@ -57,6 +57,16 @@ public class SecurityConfig {
 
                 return http.build();
         }
+        // @Bean
+        // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //         http
+        //                         .csrf(csrf -> csrf.disable())
+        //                         .authorizeHttpRequests(authz -> authz
+        //                                         .anyRequest().permitAll()); // Permitir todas las solicitudes sin
+        //                                                                     // autenticación ni autorización
+
+        //         return http.build();
+        // }
 
         @Bean
         public PasswordEncoder passwordEncoder() {
