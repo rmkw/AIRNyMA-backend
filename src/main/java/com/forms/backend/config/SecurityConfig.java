@@ -46,7 +46,8 @@ public class SecurityConfig {
                                                         "/api/variables/**",
                                                         "/api/mdea/**",
                                                         "/api/ods/**",
-                                                        "/api/relacion-mdea/**").permitAll()
+                                                        "/api/relacion-mdea/**",
+                                                        "/api/relacion-ods").permitAll()
                                                 .anyRequest().authenticated())
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
