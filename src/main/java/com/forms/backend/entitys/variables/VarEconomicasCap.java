@@ -12,7 +12,7 @@ public class VarEconomicasCap {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_variable_unique")
-    private Long id;
+    private Long idUnique;
 
     @Column(name = "id_variable", nullable = false)
     private String idVariable;

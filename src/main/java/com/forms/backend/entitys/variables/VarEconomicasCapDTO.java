@@ -1,12 +1,15 @@
 package com.forms.backend.entitys.variables;
 
+
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class VarEconomicasCapDTO {
-    private Long id;
+    
+    private Long idUnique;
     private String idVariable;
     private Integer idFuente;
     private String idPp;
