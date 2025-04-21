@@ -78,4 +78,11 @@ public class VarEconomicasCapService {
     public List<VarEconomicasCap> getByResponsableAndFuente(Integer responsableRegister, Integer idFuente) {
         return repository.findByResponsableRegisterAndIdFuenteAndIsActiveTrue(responsableRegister, idFuente);
     }
+
+    public void deleteById(Long id) {
+        if (!repository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Variable no encontrada");
+        }
+        repository.deleteById(id);
+    }
 }

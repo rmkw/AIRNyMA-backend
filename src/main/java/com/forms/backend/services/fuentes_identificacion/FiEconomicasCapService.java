@@ -47,7 +47,7 @@ public class FiEconomicasCapService {
    
 
     public List<fuentEntity> getByUser(Integer idUsuario) {
-        return repository.findByResponsableRegisterOrderByIdFuenteAsc(idUsuario);
+        return repository.findByResponsableRegisterAndIsactiveTrueOrderByIdFuenteAsc(idUsuario);
     }
 
     public fuentEntity create(CreateFiEconomicasCapDTO dto) {

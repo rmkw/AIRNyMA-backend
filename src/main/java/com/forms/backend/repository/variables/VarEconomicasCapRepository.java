@@ -20,4 +20,6 @@ public interface VarEconomicasCapRepository extends JpaRepository<VarEconomicasC
     boolean existsByIdVariableAndIdFuente(@Param("idVariable") String idVariable, @Param("idFuente") Integer idFuente);
 
 
+    
+
 }

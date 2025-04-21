@@ -34,4 +34,9 @@ public class VarEconomicasCapController {
         return service.getByResponsableAndFuente(responsableRegister, idFuente);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteVariable(@PathVariable Long id) {
+        service.deleteById(id);
+    }
+
 }
