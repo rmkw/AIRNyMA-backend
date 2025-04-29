@@ -14,4 +14,6 @@ public interface FiEconomicasCapRepository extends JpaRepository<fuentEntity, In
 
     List<fuentEntity> findByResponsableRegisterAndIsactiveTrueOrderByIdFuenteAsc(Integer responsableRegister);
 
+    List<fuentEntity> findByIdPpAndResponsableRegisterAndIsactiveTrue(String idPp, Integer responsableRegister);
+
 }

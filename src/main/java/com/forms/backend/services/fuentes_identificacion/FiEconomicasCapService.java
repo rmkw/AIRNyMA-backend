@@ -99,4 +99,9 @@ public class FiEconomicasCapService {
             "id", record.getIdFuente()
         );
     }
+    
+    public List<fuentEntity> getByIdPpAndResponsable(String idPp, Integer responsableRegister) {
+        return repository.findByIdPpAndResponsableRegisterAndIsactiveTrue(idPp, responsableRegister);
+    }
+
 }

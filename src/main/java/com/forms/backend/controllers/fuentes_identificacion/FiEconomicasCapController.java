@@ -45,8 +45,21 @@ public class FiEconomicasCapController {
     }
 
     @PatchMapping("/{id}/deactivate")
-public ResponseEntity<Map<String, Object>> deactivate(@PathVariable Integer id) {
-    Map<String, Object> response = service.deactivateRecord(id);
-    return ResponseEntity.ok(response);
-}
+    public ResponseEntity<Map<String, Object>> deactivate(@PathVariable Integer id) {
+        Map<String, Object> response = service.deactivateRecord(id);
+        return ResponseEntity.ok(response);
+    }
+    
+    @GetMapping("/fuentes")
+    public ResponseEntity<?> getByIdPpAndResponsable(
+            @RequestParam String idPp,
+            @RequestParam Integer responsableRegister) {
+
+        List<fuentEntity> result = service.getByIdPpAndResponsable(idPp, responsableRegister);
+
+        return ResponseEntity.ok(Map.of(
+                "message", "Registros encontrados",
+                "fuentes", result));
+    }
+
 }
