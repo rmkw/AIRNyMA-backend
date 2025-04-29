@@ -11,7 +11,7 @@ import com.forms.backend.entitys.z_direcciones.Enty_direccionesGenerales;
 import com.forms.backend.services.z_direcciones.service_direccionesGenerales;
 
 @RestController
-@RequestMapping("/api/direcciones")
+@RequestMapping("/api/dir")
 public class controller_direccionesGenerales {
     @Autowired
     private service_direccionesGenerales service;

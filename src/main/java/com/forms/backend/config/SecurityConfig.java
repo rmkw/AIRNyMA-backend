@@ -47,7 +47,9 @@ public class SecurityConfig {
                                                         "/api/mdea/**",
                                                         "/api/ods/**",
                                                         "/api/relacion-mdea/**",
-                                                        "/api/relacion-ods/**").permitAll()
+                                                        "/api/relacion-ods/**",
+                                                        "/api/dir/**",
+                                                        "/api/procesosP/**").permitAll()
                                                 .anyRequest().authenticated())
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
