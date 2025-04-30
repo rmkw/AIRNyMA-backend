@@ -66,7 +66,7 @@ public class FiEconomicasCapService {
         Optional<fuentEntity> optional = repository.findById(id);
         if (optional.isPresent()) {
             fuentEntity entity = optional.get();
-            entity.setIdPp(dto.getIdPp());
+            // entity.setIdPp(dto.getIdPp());
             entity.setFuente(dto.getFuente());
             entity.setLinkFuente(dto.getLinkFuente());
             // entity.setLinkAccesoFuente(dto.getLinkAccesoFuente());
