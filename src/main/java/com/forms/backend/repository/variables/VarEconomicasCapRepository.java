@@ -19,6 +19,8 @@ public interface VarEconomicasCapRepository extends JpaRepository<VarEconomicasC
     @Query("SELECT CASE WHEN COUNT(v) > 0 THEN true ELSE false END FROM VarEconomicasCap v WHERE v.idVariable = :idVariable AND v.idFuente = :idFuente")
     boolean existsByIdVariableAndIdFuente(@Param("idVariable") String idVariable, @Param("idFuente") Integer idFuente);
 
+    List<VarEconomicasCap> findByIdVariable(String idVariable);
+
 
     
 

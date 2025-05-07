@@ -39,4 +39,8 @@ public class VarEconomicasCapService {
         }
         repository.deleteById(id);
     }
+
+    public List<VarEconomicasCap> getByIdVariable(String idVariable) {
+        return repository.findByIdVariable(idVariable);
+    }
 }

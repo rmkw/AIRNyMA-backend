@@ -38,4 +38,9 @@ public class VarEconomicasCapController {
         service.deleteById(id);
     }
 
+    @GetMapping("/por-id/{idVariable}")
+    public List<VarEconomicasCap> getByIdVariable(@PathVariable String idVariable) {
+        return service.getByIdVariable(idVariable);
+    }
+
 }
