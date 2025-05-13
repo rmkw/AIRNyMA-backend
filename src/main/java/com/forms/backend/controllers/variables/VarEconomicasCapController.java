@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.forms.backend.entitys.variables.VarEconomicasCap;
-
+import com.forms.backend.entitys.variables.VaryRelationsDTO;
 import com.forms.backend.services.variables.VarEconomicasCapService;
 
 
@@ -38,9 +38,14 @@ public class VarEconomicasCapController {
         service.deleteById(id);
     }
 
+    // @GetMapping("/por-id/{idVariable}")
+    // public List<VarEconomicasCap> getByIdVariable(@PathVariable String idVariable) {
+    //     return service.getByIdVariable(idVariable);
+    // }
+    
     @GetMapping("/por-id/{idVariable}")
-    public List<VarEconomicasCap> getByIdVariable(@PathVariable String idVariable) {
-        return service.getByIdVariable(idVariable);
+    public List<VaryRelationsDTO> getByIdVariableWithRelations(@PathVariable String idVariable) {
+        return service.getWithRelationsByIdVariable(idVariable);
     }
 
 }
