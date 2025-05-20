@@ -9,10 +9,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.forms.backend.entitys.captura_relationVarWhitMDEA.RelationVarWhitMDEA;
 import com.forms.backend.entitys.captura_relationVarWhitODS.RelationVarWhit_ODS;
+import com.forms.backend.entitys.tema_cobertura_nece.TemaCobNec;
 import com.forms.backend.entitys.variables.VarEconomicasCap;
 import com.forms.backend.entitys.variables.VaryRelationsDTO;
+
 import com.forms.backend.repository.variables.RelationVarWhitMDEARepository;
 import com.forms.backend.repository.variables.RelationVarWhit_ODSRepository;
+import com.forms.backend.repository.variables.RelationVarWhit_TemaCobNecRepository;
 import com.forms.backend.repository.variables.VarEconomicasCapRepository;
 
 import java.util.List;
@@ -27,6 +30,9 @@ public class VarEconomicasCapService {
     private RelationVarWhitMDEARepository mdeaRepository;
     @Autowired
     private RelationVarWhit_ODSRepository odsRepository;
+    @Autowired
+    private RelationVarWhit_TemaCobNecRepository pertinenciaRepository;
+
 
     
 
@@ -73,6 +79,8 @@ public class VarEconomicasCapService {
         // Agrega relaciones
         List<RelationVarWhitMDEA> mdeas = mdeaRepository.findByIdVariableUnique(var.getIdUnique());
         List<RelationVarWhit_ODS> ods = odsRepository.findByIdVariableUnique(var.getIdUnique());
+        List<TemaCobNec> pertinencia = pertinenciaRepository.findByIdVariableUnique(var.getIdUnique());
+        dto.setPertinencia(pertinencia);
 
         dto.setMdeas(mdeas);
         dto.setOds(ods);

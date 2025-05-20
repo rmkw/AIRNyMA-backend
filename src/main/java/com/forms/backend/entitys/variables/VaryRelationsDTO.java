@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.forms.backend.entitys.captura_relationVarWhitMDEA.RelationVarWhitMDEA;
 import com.forms.backend.entitys.captura_relationVarWhitODS.RelationVarWhit_ODS;
+import com.forms.backend.entitys.tema_cobertura_nece.TemaCobNec;
 
 @Getter
 @Setter
@@ -27,4 +28,14 @@ public class VaryRelationsDTO {
 
     private List<RelationVarWhitMDEA> mdeas;
     private List<RelationVarWhit_ODS> ods;
+    private List<TemaCobNec> pertinencia;
+
+    public List<TemaCobNec> getPertinencia() {
+        return pertinencia;
+    }
+
+    public void setPertinencia(List<TemaCobNec> pertinencia) {
+        this.pertinencia = pertinencia;
+    }
+
 }
