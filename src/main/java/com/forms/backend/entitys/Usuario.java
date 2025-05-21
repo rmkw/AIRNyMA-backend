@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuarios", schema = "users")
 @Getter
 @Setter
 public class Usuario {
@@ -20,7 +20,11 @@ public class Usuario {
     private String contrasena;
 
     @ElementCollection(fetch = FetchType.EAGER) // Guarda los roles como una colección
-    @CollectionTable(name = "usuario_roles", joinColumns = @JoinColumn(name = "usuario_id"))
+    @CollectionTable(
+        name = "usuarios_roles", 
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        schema = "users"
+        )
     @Column(name = "rol")
     private Set<String> roles;
 }

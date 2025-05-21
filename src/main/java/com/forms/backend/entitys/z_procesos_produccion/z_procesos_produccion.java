@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "z_procesos_produccion")
+@Table(name = "procesos_produccion", schema = "production")
 @Data
 public class z_procesos_produccion {
     @Id
@@ -123,7 +123,7 @@ public class z_procesos_produccion {
     @Column(name = "estatus")
     private String estatus;
 
-    @Column(name = "id_di")
+    @Column(name = "id_di") // Es el id de la direccion en donde esta el proceso
     private Integer idDi;
 
     @Column(name = "comentario_pp")
