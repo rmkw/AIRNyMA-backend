@@ -8,5 +8,7 @@ import com.forms.backend.entitys.captura_relationVarWhitODS.RelationVarWhit_ODS;
 
 public interface RelationVarWhit_ODSRepository extends JpaRepository<RelationVarWhit_ODS, Long> {
     List<RelationVarWhit_ODS> findByIdVariableUnique(Long idVariableUnique);
+
+    void deleteByIdVariableUnique(Integer idUnique);
     
 }

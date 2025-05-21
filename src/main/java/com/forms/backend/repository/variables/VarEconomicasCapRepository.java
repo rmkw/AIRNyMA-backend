@@ -22,6 +22,12 @@ public interface VarEconomicasCapRepository extends JpaRepository<VarEconomicasC
 
     List<VarEconomicasCap> findByIdVariable(String idVariable);
 
+    void deleteByIdUnique(Long idUnique);
+
+    List<VarEconomicasCap> findByIdFuente(Integer idFuente);
+
+    
+
 
 
 

@@ -18,7 +18,10 @@ import com.forms.backend.repository.variables.RelationVarWhit_ODSRepository;
 import com.forms.backend.repository.variables.RelationVarWhit_TemaCobNecRepository;
 import com.forms.backend.repository.variables.VarEconomicasCapRepository;
 
+
+
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 
@@ -87,5 +90,10 @@ public class VarEconomicasCapService {
         return dto;
         }).collect(Collectors.toList());
     }
+
+    
+
+
+       
 
 }

@@ -4,7 +4,13 @@ package com.forms.backend.services.fuentes_identificacion;
 import com.forms.backend.entitys.fuentes_identificacion.CreateFiEconomicasCapDTO;
 import com.forms.backend.entitys.fuentes_identificacion.UpdateFiEconomicasCapDTO;
 import com.forms.backend.entitys.fuentes_identificacion.fuentEntity;
+import com.forms.backend.entitys.variables.VarEconomicasCap;
 import com.forms.backend.repository.fuentes_identificacion.FiEconomicasCapRepository;
+
+import com.forms.backend.repository.variables.RelationVarWhitMDEARepository;
+import com.forms.backend.repository.variables.RelationVarWhit_ODSRepository;
+import com.forms.backend.repository.variables.RelationVarWhit_TemaCobNecRepository;
+import com.forms.backend.repository.variables.VarEconomicasCapRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -24,6 +30,23 @@ import java.util.Optional;
 public class FiEconomicasCapService {
     @Autowired
     private FiEconomicasCapRepository repository;
+
+    @Autowired
+    private VarEconomicasCapRepository VariableRepo;
+
+    @Autowired
+    private RelationVarWhit_TemaCobNecRepository TemaRepo;
+
+    @Autowired
+    private RelationVarWhitMDEARepository mdeaRepo;
+
+    @Autowired
+    private RelationVarWhit_ODSRepository odsRepo;
+    
+
+
+
+
 
     public List<fuentEntity> getAll() {
         return repository.findAllByOrderByIdFuenteAsc();
@@ -104,4 +127,40 @@ public class FiEconomicasCapService {
         return repository.findByIdPpAndResponsableRegisterAndIsactiveTrue(idPp, responsableRegister);
     }
 
+    @Transactional
+    public Map<String, Object> deleteFuenteAndCascade(Integer idFuente){
+        Optional<fuentEntity> optionalRecord = repository.findById(idFuente);
+
+        if (optionalRecord.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Fuente no encontrada");
+        }
+        // Paso 1: Obtener las variables asociadas a esta fuente
+    List<VarEconomicasCap> variables = VariableRepo.findByIdFuente(idFuente);
+
+    // Paso 2: Por cada variable, eliminar relaciones y luego la variable
+    for (VarEconomicasCap var : variables) {
+        Integer varId = var.getIdUnique().intValue();;
+
+        // Elimina temas de pertinencia
+        TemaRepo.deleteByIdVariableUnique(varId);
+
+        // Elimina ODS
+        odsRepo.deleteByIdVariableUnique(varId);
+
+        // Elimina MDEA
+        mdeaRepo.deleteByIdVariableUnique(varId);
+
+        // Elimina la variable
+        VariableRepo.deleteById(Long.valueOf(varId));
+
+    }
+
+    // Paso 3: Elimina la fuente
+    repository.deleteById(idFuente);
+
+    return Map.of(
+        "message", "Fuente y todas sus relaciones eliminadas correctamente",
+        "id", idFuente
+    );
+    }
 }

@@ -8,4 +8,6 @@ import com.forms.backend.entitys.tema_cobertura_nece.TemaCobNec;
 
 public interface RelationVarWhit_TemaCobNecRepository extends JpaRepository<TemaCobNec, Long>{
     List<TemaCobNec> findByIdVariableUnique(Long idVariableUnique);
+
+    void deleteByIdVariableUnique(Integer idUnique);
 }
