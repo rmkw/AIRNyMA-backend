@@ -16,6 +16,6 @@ public class service_direccionesGenerales {
     private repo_direccionesGenerales repo;
 
     public List<Enty_direccionesGenerales> getAllDir(){
-        return repo.findAll(Sort.by("idDi"));
+        return repo.findAll(Sort.by("idUnidad"));
     }
 }

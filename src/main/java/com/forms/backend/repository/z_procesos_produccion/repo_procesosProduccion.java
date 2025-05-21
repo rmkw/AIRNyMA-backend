@@ -23,4 +23,6 @@ public interface repo_procesosProduccion extends JpaRepository<z_procesos_produc
    @Query("UPDATE z_procesos_produccion p SET p.comentarioPp = :comentario WHERE p.id = :id")
    void actualizarComentarioPorId(@Param("id") Integer id, @Param("comentario") String comentario);
 
+   List<z_procesos_produccion> findByIdUnidad(Integer idUnidad);
+
 }

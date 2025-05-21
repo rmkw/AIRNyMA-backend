@@ -27,4 +27,9 @@ public class service_pp {
     public void actualizarComentario(Integer id, String comentario) {
         repo.actualizarComentarioPorId(id, comentario);
     }
+
+    public List<z_procesos_produccion> obtenerPorIdUnidad(Integer idUnidad) {
+        return repo.findByIdUnidad(idUnidad);
+    }
+
 }

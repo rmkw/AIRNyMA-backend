@@ -34,49 +34,49 @@ public class SecurityConfig {
                 return authenticationManagerBuilder.build();
         }
 
-        // @Bean
-        // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        //         http
-        //                         .csrf(csrf -> csrf.disable())
-        //                         .authorizeHttpRequests(authz -> authz
-        //                                         .requestMatchers( 
-        //                                                 "/api/auth/**",
-        //                                                 "/api/ppeco/**",
-        //                                                 "/api/fi-economicas/**",
-        //                                                 "/api/variables/**",
-        //                                                 "/api/mdea/**",
-        //                                                 "/api/ods/**",
-        //                                                 "/api/relacion-mdea/**",
-        //                                                 "/api/relacion-ods/**",
-        //                                                 "/api/dir/**",
-        //                                                 "/api/procesosP/**").permitAll()
-        //                                         .anyRequest().authenticated())
-        //                         .sessionManagement(session -> session
-        //                                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-        //                                         .maximumSessions(1) // Solo permite una sesión por usuario
-        //                                         .maxSessionsPreventsLogin(false) // Permite que el usuario vuelva a
-        //                                                                          // iniciar sesión (expulsa la sesión
-        //                                                                          // anterior)
-        //                         )
-        //                         .securityContext(securityContext -> securityContext
-        //                                 .requireExplicitSave(false)
-        //                                 )
-        //                                 .cors(cors -> cors.configurationSource(corsConfigurationSource())
-        //                                 )
-        //                                 .anonymous(anonymous -> anonymous.disable());
-
-        //         return http.build();
-        // }
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(authz -> authz
-                                                .anyRequest().permitAll()); // Permitir todas las solicitudes sin
-                                                                            // autenticación ni autorización
+                                                .requestMatchers( 
+                                                        "/api/auth/**",
+                                                        "/api/ppeco/**",
+                                                        "/api/fi-economicas/**",
+                                                        "/api/variables/**",
+                                                        "/api/mdea/**",
+                                                        "/api/ods/**",
+                                                        "/api/relacion-mdea/**",
+                                                        "/api/relacion-ods/**",
+                                                        "/api/dir/**",
+                                                        "/api/procesosP/**").permitAll()
+                                                .anyRequest().authenticated())
+                                .sessionManagement(session -> session
+                                                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                                                .maximumSessions(1) // Solo permite una sesión por usuario
+                                                .maxSessionsPreventsLogin(false) // Permite que el usuario vuelva a
+                                                                                 // iniciar sesión (expulsa la sesión
+                                                                                 // anterior)
+                                )
+                                .securityContext(securityContext -> securityContext
+                                        .requireExplicitSave(false)
+                                        )
+                                        .cors(cors -> cors.configurationSource(corsConfigurationSource())
+                                        )
+                                        .anonymous(anonymous -> anonymous.disable());
 
                 return http.build();
         }
+        // @Bean
+        // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //         http
+        //                         .csrf(csrf -> csrf.disable())
+        //                         .authorizeHttpRequests(authz -> authz
+        //                                         .anyRequest().permitAll()); // Permitir todas las solicitudes sin
+        //                                                                     // autenticación ni autorización
+
+        //         return http.build();
+        // }
 
         @Bean
         public PasswordEncoder passwordEncoder() {

@@ -123,8 +123,8 @@ public class z_procesos_produccion {
     @Column(name = "estatus")
     private String estatus;
 
-    @Column(name = "id_di") // Es el id de la direccion en donde esta el proceso
-    private Integer idDi;
+    @Column(name = "id_unidad") // Es el id de la direccion en donde esta el proceso
+    private Integer idUnidad;
 
     @Column(name = "comentario_pp")
     private String comentarioPp;

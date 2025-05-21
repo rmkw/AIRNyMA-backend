@@ -10,14 +10,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "z_direcciones_gen")
+@Table(name = "unidades", schema = "catalog")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Enty_direccionesGenerales {
    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Long idDi;
+    private Long idUnidad;
 
-    private String nameDi; 
+    private String nameUnidad; 
 }

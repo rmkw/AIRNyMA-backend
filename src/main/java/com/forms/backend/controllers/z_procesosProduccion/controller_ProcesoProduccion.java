@@ -57,5 +57,10 @@ public class controller_ProcesoProduccion {
         }
     }
 
+    @GetMapping("/unidad/{idUnidad}")
+    public List<z_procesos_produccion> buscarPorIdUnidad(@PathVariable Integer idUnidad) {
+        return service.obtenerPorIdUnidad(idUnidad);
+    }
+
     
 }
