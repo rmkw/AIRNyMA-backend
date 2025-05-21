@@ -29,7 +29,7 @@ public class service_pp {
     }
 
     public List<z_procesos_produccion> obtenerPorIdUnidad(Integer idUnidad) {
-        return repo.findByIdUnidad(idUnidad);
+        return repo.findByIdUnidadOrderByAcronimoAsc(idUnidad);
     }
 
 }
