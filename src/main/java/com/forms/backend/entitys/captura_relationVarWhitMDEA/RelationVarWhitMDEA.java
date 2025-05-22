@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "relacion_mdea_variable_eco")
+@Table(name = "relacion_mdea", schema = "production")
 @Getter
 @Setter
 public class RelationVarWhitMDEA {

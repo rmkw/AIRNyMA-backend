@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "relacion_ods_variable_eco")
+@Table(name = "relacion_ods", schema = "production")
 @Getter
 @Setter
 @NoArgsConstructor
