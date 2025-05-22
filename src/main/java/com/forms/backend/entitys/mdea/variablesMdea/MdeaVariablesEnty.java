@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "mdea_variables", uniqueConstraints = @UniqueConstraint(columnNames = { "id_comp", "id_sub", "id_top",
+@Table(name = "mdea_variables", schema = "catalog", uniqueConstraints = @UniqueConstraint(columnNames = { "id_comp", "id_sub", "id_top",
         "id_var" }), indexes = {
                 @Index(name = "idx_id_comp_id_sub_id_top", columnList = "id_comp, id_sub, id_top"),
                 @Index(name = "idx_unique_id", columnList = "unique_id")

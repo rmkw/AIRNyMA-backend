@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "mdea_componentes")
+@Table(name = "mdea_componentes", schema = "catalog")
 @Data
 public class MdeaComponentesEnty {
     @Id

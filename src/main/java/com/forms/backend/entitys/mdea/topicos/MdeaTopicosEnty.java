@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "mdea_topicos", uniqueConstraints = @UniqueConstraint(columnNames = { "id_comp", "id_sub",
+@Table(name = "mdea_topicos", schema = "catalog", uniqueConstraints = @UniqueConstraint(columnNames = { "id_comp", "id_sub",
         "id_top" }), indexes = {
                 @Index(name = "idx_id_comp_id_sub", columnList = "id_comp, id_sub"),
                 @Index(name = "idx_unique_id", columnList = "unique_id")

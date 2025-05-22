@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "var_economicas_cap")
+@Table(name = "variables", schema = "production")
 @Getter
 @Setter
 public class VarEconomicasCap {
