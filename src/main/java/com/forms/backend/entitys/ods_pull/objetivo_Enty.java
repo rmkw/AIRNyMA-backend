@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "pull_ods_objetivo")
+@Table(name = "ods_objetivo", schema = "catalog")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

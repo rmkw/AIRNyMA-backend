@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "pull_ods_meta") // Opcional
+@Table(name = "ods_meta", schema = "catalog") // Opcional
 @IdClass(MetaId.class)
 public class meta_Enty {
      @Id
