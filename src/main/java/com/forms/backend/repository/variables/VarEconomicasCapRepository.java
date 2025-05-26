@@ -30,6 +30,11 @@ public interface VarEconomicasCapRepository extends JpaRepository<VarEconomicasC
     @Query("SELECT COUNT(v) FROM VarEconomicasCap v WHERE v.idFuente = :idFuente AND v.isActive = true")
     Long countActiveVariablesByIdFuente(@Param("idFuente") Integer idFuente);
 
+    @Query("SELECT v FROM VarEconomicasCap v WHERE v.responsableRegister = :responsableRegister AND v.idFuente = :idFuente AND v.isActive = true ORDER BY v.idVariable ASC")
+    List<VarEconomicasCap> findByResponsableRegisterAndIdFuenteAndIsActiveTrueOrderByIdVariable(
+            @Param("responsableRegister") Integer responsableRegister,
+            @Param("idFuente") Integer idFuente);
+
     
 
 

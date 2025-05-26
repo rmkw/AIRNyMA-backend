@@ -44,21 +44,25 @@ public class VarEconomicasCapService {
     
 
     public VarEconomicasCap crearVariable(VarEconomicasCap variable) {
-    try {
-        VarEconomicasCap nueva = repository.save(variable);
-        System.out.println("Nuevo ID generado: " + nueva.getIdUnique());
-        return nueva;
-    } catch (DataIntegrityViolationException e) {
-        throw new ResponseStatusException(
-            HttpStatus.CONFLICT, // 409 Conflict
-            "Ya existe una variable con ese ID y fuente", e
-        );
+        // Validación manual antes de guardar
+        if (repository.existsByIdVariableAndIdFuente(variable.getIdVariable(), variable.getIdFuente())) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Ya existe una variable con ese ID y fuente");
+        }
+
+        try {
+            VarEconomicasCap nueva = repository.save(variable);
+            System.out.println("Nuevo ID generado: " + nueva.getIdUnique());
+            return nueva;
+        } catch (DataIntegrityViolationException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Conflicto al guardar la variable (posible duplicado)", e);
+        }
     }
-}
     
-    public List<VarEconomicasCap> getByResponsableAndFuente(Integer responsableRegister, Integer idFuente) {
-        return repository.findByResponsableRegisterAndIdFuenteAndIsActiveTrue(responsableRegister, idFuente);
-    }
+    
 
     public void deleteById(Long id) {
         if (!repository.existsById(id)) {
@@ -89,6 +93,11 @@ public class VarEconomicasCapService {
         dto.setOds(ods);
         return dto;
         }).collect(Collectors.toList());
+    }
+
+    public List<VarEconomicasCap> getByResponsableAndFuente(Integer responsableRegister, Integer idFuente) {
+        return repository.findByResponsableRegisterAndIdFuenteAndIsActiveTrueOrderByIdVariable(responsableRegister,
+                idFuente);
     }
 
     

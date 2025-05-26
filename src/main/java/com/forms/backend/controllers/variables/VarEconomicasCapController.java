@@ -29,7 +29,7 @@ public class VarEconomicasCapController {
     public List<VarEconomicasCap> getByResponsableAndFuente(
             @PathVariable Integer responsableRegister,
             @PathVariable Integer idFuente) {
-        
+
         return service.getByResponsableAndFuente(responsableRegister, idFuente);
     }
 
