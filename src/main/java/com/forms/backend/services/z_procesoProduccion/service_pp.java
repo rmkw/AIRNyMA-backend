@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.forms.backend.entitys.z_procesos_produccion.ProcesoProduccionDTO;
 import com.forms.backend.entitys.z_procesos_produccion.z_procesos_produccion;
 import com.forms.backend.repository.z_procesos_produccion.repo_procesosProduccion;
 
@@ -28,8 +29,9 @@ public class service_pp {
         repo.actualizarComentarioPorId(id, comentario);
     }
 
-    public List<z_procesos_produccion> obtenerPorIdUnidad(Integer idUnidad) {
-        return repo.findByIdUnidadOrderByAcronimoAsc(idUnidad);
+    public List<ProcesoProduccionDTO> obtenerPorIdUnidadConConteo(Integer idUnidad) {
+        return repo.findProcesosConConteoVariablesByIdUnidad(idUnidad);
     }
+
 
 }

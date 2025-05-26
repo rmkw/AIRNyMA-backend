@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.forms.backend.entitys.z_procesos_produccion.ProcesoProduccionDTO;
 import com.forms.backend.entitys.z_procesos_produccion.z_procesos_produccion;
 import com.forms.backend.services.z_procesoProduccion.service_pp;
 
@@ -58,9 +59,11 @@ public class controller_ProcesoProduccion {
     }
 
     @GetMapping("/unidad/{idUnidad}")
-    public List<z_procesos_produccion> buscarPorIdUnidad(@PathVariable Integer idUnidad) {
-        return service.obtenerPorIdUnidad(idUnidad);
+    public ResponseEntity<List<ProcesoProduccionDTO>> obtenerPorIdUnidad(@PathVariable Integer idUnidad) {
+        List<ProcesoProduccionDTO> procesos = service.obtenerPorIdUnidadConConteo(idUnidad);
+        return ResponseEntity.ok(procesos);
     }
+
 
     
 }
