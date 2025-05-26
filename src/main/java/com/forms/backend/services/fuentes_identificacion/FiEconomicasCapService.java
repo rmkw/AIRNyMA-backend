@@ -2,6 +2,7 @@ package com.forms.backend.services.fuentes_identificacion;
 
 
 import com.forms.backend.entitys.fuentes_identificacion.CreateFiEconomicasCapDTO;
+import com.forms.backend.entitys.fuentes_identificacion.FuenteConConteoDTO;
 import com.forms.backend.entitys.fuentes_identificacion.UpdateFiEconomicasCapDTO;
 import com.forms.backend.entitys.fuentes_identificacion.fuentEntity;
 import com.forms.backend.entitys.variables.VarEconomicasCap;
@@ -123,9 +124,26 @@ public class FiEconomicasCapService {
         );
     }
     
-    public List<fuentEntity> getByIdPpAndResponsable(String idPp, Integer responsableRegister) {
-        return repository.findByIdPpAndResponsableRegisterAndIsactiveTrue(idPp, responsableRegister);
-    }
+    public List<FuenteConConteoDTO> getByIdPpAndResponsable(String idPp, Integer responsableRegister) {
+    List<fuentEntity> fuentes = repository.findByIdPpAndResponsableRegisterAndIsactiveTrue(idPp, responsableRegister);
+
+    return fuentes.stream().map(fuente -> {
+        Long totalVariables = VariableRepo.countActiveVariablesByIdFuente(fuente.getIdFuente());
+        return new FuenteConConteoDTO(
+            fuente.getIdFuente(),
+            fuente.getIdPp(),
+            fuente.getFuente(),
+            fuente.getLinkFuente(),
+            fuente.getAnioEvento(),
+            fuente.getComentario(),
+            fuente.getIsactive(),
+            fuente.getResponsableRegister(),
+            fuente.getResponsableActualizacion(),
+            totalVariables
+        );
+    }).toList();
+}
+
 
     @Transactional
     public Map<String, Object> deleteFuenteAndCascade(Integer idFuente){
@@ -163,4 +181,6 @@ public class FiEconomicasCapService {
         "id", idFuente
     );
     }
+
+    
 }

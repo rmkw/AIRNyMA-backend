@@ -2,6 +2,7 @@ package com.forms.backend.repository.fuentes_identificacion;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.stereotype.Repository;
 import com.forms.backend.entitys.fuentes_identificacion.fuentEntity;
 import java.util.List;
@@ -15,5 +16,8 @@ public interface FiEconomicasCapRepository extends JpaRepository<fuentEntity, In
     List<fuentEntity> findByResponsableRegisterAndIsactiveTrueOrderByIdFuenteAsc(Integer responsableRegister);
 
     List<fuentEntity> findByIdPpAndResponsableRegisterAndIsactiveTrue(String idPp, Integer responsableRegister);
+
+    
+
 
 }

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.forms.backend.entitys.fuentes_identificacion.CreateFiEconomicasCapDTO;
+import com.forms.backend.entitys.fuentes_identificacion.FuenteConConteoDTO;
 import com.forms.backend.entitys.fuentes_identificacion.UpdateFiEconomicasCapDTO;
 import com.forms.backend.entitys.fuentes_identificacion.fuentEntity;
 import com.forms.backend.services.fuentes_identificacion.FiEconomicasCapService;
@@ -50,17 +51,29 @@ public class FiEconomicasCapController {
         return ResponseEntity.ok(response);
     }
     
+    // @GetMapping("/fuentes")
+    // public ResponseEntity<?> getByIdPpAndResponsable(
+    //         @RequestParam String idPp,
+    //         @RequestParam Integer responsableRegister) {
+
+    //     List<fuentEntity> result = service.getByIdPpAndResponsable(idPp, responsableRegister);
+
+    //     return ResponseEntity.ok(Map.of(
+    //             "message", "Registros encontrados",
+    //             "fuentes", result));
+    // }
     @GetMapping("/fuentes")
-    public ResponseEntity<?> getByIdPpAndResponsable(
-            @RequestParam String idPp,
-            @RequestParam Integer responsableRegister) {
+public ResponseEntity<?> getByIdPpAndResponsable(
+        @RequestParam String idPp,
+        @RequestParam Integer responsableRegister) {
 
-        List<fuentEntity> result = service.getByIdPpAndResponsable(idPp, responsableRegister);
+    List<FuenteConConteoDTO> result = service.getByIdPpAndResponsable(idPp, responsableRegister);
 
-        return ResponseEntity.ok(Map.of(
-                "message", "Registros encontrados",
-                "fuentes", result));
-    }
+    return ResponseEntity.ok(Map.of(
+            "message", "Registros encontrados",
+            "fuentes", result));
+}
+
 
     @DeleteMapping("/{id}/delete-full")
     public ResponseEntity<Map<String, Object>> deleteFuenteCascade(@PathVariable Integer id) {
