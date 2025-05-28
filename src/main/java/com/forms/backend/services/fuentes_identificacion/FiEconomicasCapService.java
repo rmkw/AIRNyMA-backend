@@ -125,24 +125,24 @@ public class FiEconomicasCapService {
     }
     
     public List<FuenteConConteoDTO> getByIdPpAndResponsable(String idPp, Integer responsableRegister) {
-    List<fuentEntity> fuentes = repository.findByIdPpAndResponsableRegisterAndIsactiveTrue(idPp, responsableRegister);
+        List<fuentEntity> fuentes = repository
+                .findByIdPpAndResponsableRegisterAndIsactiveTrueOrderByAnioEventoDesc(idPp, responsableRegister);
 
-    return fuentes.stream().map(fuente -> {
-        Long totalVariables = VariableRepo.countActiveVariablesByIdFuente(fuente.getIdFuente());
-        return new FuenteConConteoDTO(
-            fuente.getIdFuente(),
-            fuente.getIdPp(),
-            fuente.getFuente(),
-            fuente.getLinkFuente(),
-            fuente.getAnioEvento(),
-            fuente.getComentario(),
-            fuente.getIsactive(),
-            fuente.getResponsableRegister(),
-            fuente.getResponsableActualizacion(),
-            totalVariables
-        );
-    }).toList();
-}
+        return fuentes.stream().map(fuente -> {
+            Long totalVariables = VariableRepo.countActiveVariablesByIdFuente(fuente.getIdFuente());
+            return new FuenteConConteoDTO(
+                    fuente.getIdFuente(),
+                    fuente.getIdPp(),
+                    fuente.getFuente(),
+                    fuente.getLinkFuente(),
+                    fuente.getAnioEvento(),
+                    fuente.getComentario(),
+                    fuente.getIsactive(),
+                    fuente.getResponsableRegister(),
+                    fuente.getResponsableActualizacion(),
+                    totalVariables);
+        }).toList();
+    }
 
 
     @Transactional
