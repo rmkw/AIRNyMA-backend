@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class CreateFiEconomicasCapDTO {
-    private String idPp;
+    private String acronimo;
     private String fuente;
     private String linkFuente;
     

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class FiEconomicasCapDTO {
     private Integer idFuente;
-    private String idPp;
+    private String acronimo;
     private String fuente;
     private String linkFuente;
     

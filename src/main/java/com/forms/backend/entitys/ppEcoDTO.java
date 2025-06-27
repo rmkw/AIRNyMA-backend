@@ -21,7 +21,7 @@ public class ppEcoDTO {
     private String objetivo;
     private String poblacionObjeto;
     private String unidadObservacion;
-    private String unidadAdministrativa;
+    private String unidad;
     private String periodicidad;
     private String informacionInteresNacional;
     private String estatus;

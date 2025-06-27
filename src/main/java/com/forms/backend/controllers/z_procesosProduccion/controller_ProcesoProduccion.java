@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import com.forms.backend.entitys.z_procesos_produccion.ProcesoProduccionDTO;
@@ -32,16 +32,15 @@ public class controller_ProcesoProduccion {
     }
 
     @GetMapping("/buscar")
-    public List<z_procesos_produccion> buscarPorUnidadAdministrativa(@RequestParam("unidad_administrativa") String unidadAdministrativa){
-        return service.obtenerPorUnidadAdministrativa(unidadAdministrativa);
+    public List<z_procesos_produccion> buscarPorunidad(@RequestParam("unidad_administrativa") String unidad){
+        return service.obtenerPorunidad(unidad);
     }
     
-    @ResponseBody
-    @PutMapping("/comentario/{id}")
-    public ResponseEntity<?> actualizarComentario(@PathVariable Integer id,
+    @PutMapping("/comentario/{acronimo}")
+    public ResponseEntity<?> actualizarComentario(@PathVariable String acronimo,
             @RequestBody Map<String, String> comentario) {
         String nuevoComentario = comentario.get("comentario");
-        service.actualizarComentario(id, nuevoComentario); // <- Esta línea es la que faltaba
+        service.actualizarComentario(acronimo, nuevoComentario);
         return ResponseEntity.ok(new ResponseMessage("Comentario actualizado correctamente"));
     }
 

@@ -52,22 +52,22 @@ public class FiEconomicasCapController {
     }
     
     // @GetMapping("/fuentes")
-    // public ResponseEntity<?> getByIdPpAndResponsable(
-    //         @RequestParam String idPp,
+    // public ResponseEntity<?> getByacronimoAndResponsable(
+    //         @RequestParam String acronimo,
     //         @RequestParam Integer responsableRegister) {
 
-    //     List<fuentEntity> result = service.getByIdPpAndResponsable(idPp, responsableRegister);
+    //     List<fuentEntity> result = service.getByacronimoAndResponsable(acronimo, responsableRegister);
 
     //     return ResponseEntity.ok(Map.of(
     //             "message", "Registros encontrados",
     //             "fuentes", result));
     // }
     @GetMapping("/fuentes")
-public ResponseEntity<?> getByIdPpAndResponsable(
-        @RequestParam String idPp,
+public ResponseEntity<?> getByacronimoAndResponsable(
+        @RequestParam String acronimo,
         @RequestParam Integer responsableRegister) {
 
-    List<FuenteConConteoDTO> result = service.getByIdPpAndResponsable(idPp, responsableRegister);
+    List<FuenteConConteoDTO> result = service.getByacronimoAndResponsable(acronimo, responsableRegister);
 
     return ResponseEntity.ok(Map.of(
             "message", "Registros encontrados",

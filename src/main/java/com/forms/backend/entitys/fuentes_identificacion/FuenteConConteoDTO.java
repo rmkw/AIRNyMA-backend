@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class FuenteConConteoDTO {
     private Integer idFuente;
-    private String idPp;
+    private String acronimo;
     private String fuente;
     private String linkFuente;
     private String anioEvento;

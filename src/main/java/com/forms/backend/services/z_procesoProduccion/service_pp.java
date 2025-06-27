@@ -20,13 +20,13 @@ public class service_pp {
         return repo.findAll();
     }
 
-    public List<z_procesos_produccion> obtenerPorUnidadAdministrativa(String unidadAdministrativa){
-        return repo.findByUnidadAdministrativaIgnoreCase(unidadAdministrativa);
+    public List<z_procesos_produccion> obtenerPorunidad(String unidad){
+        return repo.findByunidadIgnoreCase(unidad);
     }
 
     @Transactional
-    public void actualizarComentario(Integer id, String comentario) {
-        repo.actualizarComentarioPorId(id, comentario);
+    public void actualizarComentario(String acronimo, String comentario) {
+        repo.actualizarComentarioPorAcronimo(acronimo, comentario);
     }
 
     public List<ProcesoProduccionDTO> obtenerPorIdUnidadConConteo(Integer idUnidad) {

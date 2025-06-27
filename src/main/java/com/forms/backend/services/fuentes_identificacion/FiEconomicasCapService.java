@@ -76,7 +76,7 @@ public class FiEconomicasCapService {
 
     public fuentEntity create(CreateFiEconomicasCapDTO dto) {
         fuentEntity entity = new fuentEntity();
-        entity.setIdPp(dto.getIdPp());
+        entity.setAcronimo(dto.getAcronimo());
         entity.setFuente(dto.getFuente());
         entity.setLinkFuente(dto.getLinkFuente());
         
@@ -90,7 +90,7 @@ public class FiEconomicasCapService {
         Optional<fuentEntity> optional = repository.findById(id);
         if (optional.isPresent()) {
             fuentEntity entity = optional.get();
-            // entity.setIdPp(dto.getIdPp());
+            // entity.setacronimo(dto.getacronimo());
             entity.setFuente(dto.getFuente());
             entity.setLinkFuente(dto.getLinkFuente());
             // entity.setLinkAccesoFuente(dto.getLinkAccesoFuente());
@@ -124,15 +124,15 @@ public class FiEconomicasCapService {
         );
     }
     
-    public List<FuenteConConteoDTO> getByIdPpAndResponsable(String idPp, Integer responsableRegister) {
+    public List<FuenteConConteoDTO> getByacronimoAndResponsable(String acronimo, Integer responsableRegister) {
         List<fuentEntity> fuentes = repository
-                .findByIdPpAndResponsableRegisterAndIsactiveTrueOrderByAnioEventoDesc(idPp, responsableRegister);
+                .findByacronimoAndResponsableRegisterAndIsactiveTrueOrderByAnioEventoDesc(acronimo, responsableRegister);
 
         return fuentes.stream().map(fuente -> {
             Long totalVariables = VariableRepo.countActiveVariablesByIdFuente(fuente.getIdFuente());
             return new FuenteConConteoDTO(
                     fuente.getIdFuente(),
-                    fuente.getIdPp(),
+                    fuente.getAcronimo(),
                     fuente.getFuente(),
                     fuente.getLinkFuente(),
                     fuente.getAnioEvento(),
@@ -157,7 +157,7 @@ public class FiEconomicasCapService {
 
     // Paso 2: Por cada variable, eliminar relaciones y luego la variable
     for (VarEconomicasCap var : variables) {
-        Integer varId = var.getIdUnique().intValue();;
+        String varId = var.getIdVariableCaracterizada();
 
         // Elimina temas de pertinencia
         TemaRepo.deleteByIdVariableUnique(varId);

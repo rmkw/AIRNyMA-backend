@@ -16,11 +16,11 @@ public interface FiEconomicasCapRepository extends JpaRepository<fuentEntity, In
 
     List<fuentEntity> findByResponsableRegisterAndIsactiveTrueOrderByIdFuenteAsc(Integer responsableRegister);
 
-    List<fuentEntity> findByIdPpAndResponsableRegisterAndIsactiveTrue(String idPp, Integer responsableRegister);
+    List<fuentEntity> findByacronimoAndResponsableRegisterAndIsactiveTrue(String acronimo, Integer responsableRegister);
 
-    @Query("SELECT f FROM fuentEntity f WHERE f.idPp = :idPp AND f.responsableRegister = :responsableRegister AND f.isactive = true ORDER BY CAST(f.anioEvento AS integer) DESC")
-    List<fuentEntity> findByIdPpAndResponsableRegisterAndIsactiveTrueOrderByAnioEventoDesc(
-            @Param("idPp") String idPp,
+    @Query("SELECT f FROM fuentEntity f WHERE f.acronimo = :acronimo AND f.responsableRegister = :responsableRegister AND f.isactive = true ORDER BY CAST(f.anioEvento AS integer) DESC")
+    List<fuentEntity> findByacronimoAndResponsableRegisterAndIsactiveTrueOrderByAnioEventoDesc(
+            @Param("acronimo") String acronimo,
             @Param("responsableRegister") Integer responsableRegister
     );
 

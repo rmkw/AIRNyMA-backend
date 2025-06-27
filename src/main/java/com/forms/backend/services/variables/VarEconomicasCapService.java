@@ -53,7 +53,7 @@ public class VarEconomicasCapService {
 
         try {
             VarEconomicasCap nueva = repository.save(variable);
-            System.out.println("Nuevo ID generado: " + nueva.getIdUnique());
+            System.out.println("Nuevo ID generado: " + nueva.getIdVariableCaracterizada());
             return nueva;
         } catch (DataIntegrityViolationException e) {
             throw new ResponseStatusException(
@@ -84,9 +84,9 @@ public class VarEconomicasCapService {
         BeanUtils.copyProperties(var, dto);
 
         // Agrega relaciones
-        List<RelationVarWhitMDEA> mdeas = mdeaRepository.findByIdVariableUnique(var.getIdUnique());
-        List<RelationVarWhit_ODS> ods = odsRepository.findByIdVariableUnique(var.getIdUnique());
-        List<TemaCobNec> pertinencia = pertinenciaRepository.findByIdVariableUnique(var.getIdUnique());
+        List<RelationVarWhitMDEA> mdeas = mdeaRepository.findByIdVariableUnique(var.getIdVariableCaracterizada());
+        List<RelationVarWhit_ODS> ods = odsRepository.findByIdVariableUnique(var.getIdVariableCaracterizada());
+        List<TemaCobNec> pertinencia = pertinenciaRepository.findByIdVariableUnique(var.getIdVariableCaracterizada());
         dto.setPertinencia(pertinencia);
 
         dto.setMdeas(mdeas);

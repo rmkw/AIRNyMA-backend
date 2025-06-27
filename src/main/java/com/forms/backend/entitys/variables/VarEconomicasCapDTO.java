@@ -9,17 +9,27 @@ import lombok.Setter;
 @Setter
 public class VarEconomicasCapDTO {
     
-    private Long idUnique;
+    private String idVariableCaracterizada; // obligatorio si tú lo generas desde frontend
+
     private String idVariable;
+
     private Integer idFuente;
-    private String idPp;
+
+    private String acronimo;
+
     private String nombreVariable;
+
     private String definicionVar;
+
     private String linkVar;
+
     private String comentarioVar;
-    private String varSerieAnio;
+
     private Boolean alineacionMdea;
+
     private Boolean alineacionOds;
+
     private Integer responsableRegister;
+
     private Integer responsableActualizacion;
 }

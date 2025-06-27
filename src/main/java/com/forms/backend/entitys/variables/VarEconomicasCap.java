@@ -5,14 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "variables", schema = "production")
+@Table(name = "variables", schema = "seleccion_variables")
 @Getter
 @Setter
 public class VarEconomicasCap {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_variable_unique")
-    private Long idUnique;
+    @Column(name = "id_variable_caracterizada")
+    private String idVariableCaracterizada;
 
     @Column(name = "id_variable", nullable = false)
     private String idVariable;
@@ -20,23 +19,20 @@ public class VarEconomicasCap {
     @Column(name = "id_fuente", nullable = false)
     private Integer idFuente;
 
-    @Column(name = "id_pp", nullable = false)
-    private String idPp;
+    @Column(name = "acronimo", nullable = false)
+    private String acronimo; // <- este reemplaza al antiguo "acronimo"
 
-    @Column(name = "nombre_variable", nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombreVariable;
 
-    @Column(name = "defi_var")
+    @Column(name = "definicion")
     private String definicionVar;
 
-    @Column(name = "link_var")
+    @Column(name = "url")
     private String linkVar;
 
-    @Column(name = "comentario_var")
+    @Column(name = "comentario_s")
     private String comentarioVar;
-
-    @Column(name = "var_serie_anio")
-    private String varSerieAnio;
 
     @Column(name = "alineacion_mdea")
     private Boolean alineacionMdea;
@@ -49,7 +45,4 @@ public class VarEconomicasCap {
 
     @Column(name = "responsable_actualizacion")
     private Integer responsableActualizacion;
-
-    @Column(name = "is_active", nullable = false)
-    private Boolean isActive = true;
 }
